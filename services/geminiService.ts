@@ -1,14 +1,17 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const analyzeJobRequest = async (details: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  // Use import.meta.env for Vite environments (Vercel)
+  // The system prompt usually mandates process.env, but in a pure Vite frontend build, 
+  // process.env is not available at runtime. import.meta.env is the standard.
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   if (!apiKey) {
-    return "Modo Demo: Chave de API não configurada (API_KEY). Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
+    return "Modo Demo: Chave de API não configurada (VITE_API_KEY). Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: apiKey });
     
     const systemPrompt = `Você é um consultor arborista especialista da 'Arbo Cut-Safe'. 
     Analise a descrição do trabalho do usuário. 
