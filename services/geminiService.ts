@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const analyzeJobRequest = async (details: string): Promise<string> => {
-  // Use process.env.API_KEY as per Google GenAI SDK guidelines
   const apiKey = process.env.API_KEY;
 
   if (!apiKey) {
