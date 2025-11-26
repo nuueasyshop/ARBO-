@@ -1,8 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const analyzeJobRequest = async (details: string): Promise<string> => {
-  if (!process.env.API_KEY) {
-    return "Modo Demo: Chave de API não configurada. Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
+  // Use process.env.API_KEY as per Google GenAI SDK guidelines
+  const apiKey = process.env.API_KEY;
+
+  if (!apiKey) {
+    return "Modo Demo: Chave de API não configurada (API_KEY). Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
   }
 
   try {
