@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { Icons } from './Icons';
 
-// --- ÁREA DE CONFIGURAÇÃO DA GALERIA ---
-// Coloque suas fotos na pasta 'public/img' e atualize os caminhos abaixo.
+// --- CONFIGURAÇÃO DA GALERIA ---
+// O site buscará: /img/gallery-1.jpg, /img/gallery-2.jpg, etc.
 const INITIAL_IMAGES = [
-  // Foto Grande (Destaque)
-  "/img/projeto-destaque.jpg", // Se ainda não tiver a foto, deixe vazio ou use um link externo temporário
-  // Fotos Menores
-  "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?w=600&q=80",
-  "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=600&q=80",
-  "https://images.unsplash.com/photo-1605117882932-f9e32b03ef3c?w=600&q=80"
+  { src: "/img/gallery-1.jpg", fallback: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&q=80" }, // Destaque
+  { src: "/img/gallery-2.jpg", fallback: "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?w=600&q=80" },
+  { src: "/img/gallery-3.jpg", fallback: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=600&q=80" },
+  { src: "/img/gallery-4.jpg", fallback: "https://images.unsplash.com/photo-1605117882932-f9e32b03ef3c?w=600&q=80" }
 ];
-// ---------------------------------------
 
 export const ProjectGallery: React.FC = () => {
-  // Se a primeira imagem for o placeholder local (que não existe ainda), usamos um fallback visual
-  const [images, setImages] = useState(INITIAL_IMAGES.map(img => 
-    img.startsWith('/img/') ? "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&q=80" : img
-  ));
+  const [images, setImages] = useState(INITIAL_IMAGES.map(img => img.src));
+
+  const handleImageError = (index: number) => {
+    const newImages = [...images];
+    // Se der erro ao carregar a imagem local, troca pelo fallback online
+    if (newImages[index] !== INITIAL_IMAGES[index].fallback) {
+      newImages[index] = INITIAL_IMAGES[index].fallback;
+      setImages(newImages);
+    }
+  };
 
   const handleImageUpload = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -41,7 +44,7 @@ export const ProjectGallery: React.FC = () => {
           </div>
           <p className="text-gray-400 max-w-md text-sm md:text-right">
             Veja a complexidade e a limpeza das nossas operações recentes.
-            <br/><span className="text-xs opacity-50">(Para alterar definitivamente, salve as fotos na pasta 'public' do projeto)</span>
+            <br/><span className="text-xs opacity-50">(Fotos carregadas de /public/img/gallery-*.jpg)</span>
           </p>
         </div>
 
@@ -50,6 +53,7 @@ export const ProjectGallery: React.FC = () => {
             <div key={index} className={`relative group rounded-2xl overflow-hidden aspect-[4/3] ${index === 0 ? 'md:col-span-2 md:row-span-2 md:aspect-auto' : ''}`}>
               <img 
                 src={img} 
+                onError={() => handleImageError(index)}
                 alt={`Projeto Arbo Cut-Safe ${index + 1}`} 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
               />

@@ -7,33 +7,41 @@ interface TestimonialProps {
   role: string;
   content: string;
   image: string;
+  fallback: string;
 }
 
-const testimonials: TestimonialProps[] = [
+const testimonialsData: TestimonialProps[] = [
   {
     id: 1,
     name: "Roberto Mendes",
     role: "Síndico Profissional, Cond. Jardins",
     content: "Como síndico, minha prioridade é a prevenção de riscos. A Arbo foi a única empresa que apresentou toda a documentação de segurança e EPIs antes mesmo de eu pedir. A equipe trabalhou uniformizada e isolou a área perfeitamente.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg"
+    image: "/img/avatar-1.jpg",
+    fallback: "https://randomuser.me/api/portraits/men/32.jpg"
   },
   {
     id: 2,
     name: "Clara Bittencourt",
     role: "Proprietária Residencial",
     content: "Tinha um pinheiro enorme inclinado perigosamente sobre o telhado da garagem. Eu estava apavorada que caísse na próxima chuva. Eles vieram com equipamentos profissionais e removeram tudo 'fatiado', sem deixar cair um galho sequer nas telhas. Um alívio total.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg"
+    image: "/img/avatar-2.jpg",
+    fallback: "https://randomuser.me/api/portraits/women/44.jpg"
   },
   {
     id: 3,
     name: "Eng. Marcos Viana",
     role: "Gerente de Obras",
     content: "Precisávamos limpar um terreno para fundação com urgência. A equipe da Arbo não só removeu as árvores como fez a destoca completa das raízes em tempo recorde. O terreno ficou limpo e nivelado, pronto para minhas máquinas entrarem.",
-    image: "https://randomuser.me/api/portraits/men/86.jpg"
+    image: "/img/avatar-3.jpg",
+    fallback: "https://randomuser.me/api/portraits/men/86.jpg"
   }
 ];
 
 export const Testimonials: React.FC = () => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, fallbackUrl: string) => {
+    e.currentTarget.src = fallbackUrl;
+  };
+
   return (
     <section id="about" className="py-24 lg:py-32 bg-gray-100 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,7 +56,7 @@ export const Testimonials: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {testimonials.map((item) => (
+          {testimonialsData.map((item) => (
             <div key={item.id} className="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-transparent hover:border-hi-vis-orange transition-all duration-300 group">
               <div className="mb-6">
                 <Icons.Quote className="w-10 h-10 text-gray-200 group-hover:text-hi-vis-orange transition-colors duration-300" />
@@ -61,6 +69,7 @@ export const Testimonials: React.FC = () => {
               <div className="flex items-center gap-4 mt-auto">
                 <img 
                   src={item.image} 
+                  onError={(e) => handleImageError(e, item.fallback)}
                   alt={item.name} 
                   className="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 border-2 border-gray-100"
                 />

@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import { Button } from './Button';
 import { Icons } from './Icons';
 
-// --- ÁREA DE CONFIGURAÇÃO DE IMAGEM ---
-// Passo 1: Coloque sua foto na pasta 'public/img' do projeto.
-// Passo 2: Troque o link abaixo por: '/img/nome-da-sua-foto.jpg'
-const DEFAULT_HERO_IMAGE = "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?q=80&w=1600&auto=format&fit=crop"; 
-// --------------------------------------
+// --- CONFIGURAÇÃO DE IMAGEM ---
+// O site buscará automaticamente a imagem "hero-bg.jpg" na pasta "public/img".
+// Se ela não existir, usará a imagem de fallback da internet.
+const LOCAL_HERO_IMAGE = "/img/hero-bg.jpg";
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?q=80&w=1600&auto=format&fit=crop"; 
 
 export const Hero: React.FC = () => {
-  // Estado para controlar a imagem (inicia com a imagem definida acima)
-  const [heroImage, setHeroImage] = useState(DEFAULT_HERO_IMAGE);
+  const [heroImage, setHeroImage] = useState(LOCAL_HERO_IMAGE);
+
+  const handleImageError = () => {
+    // Se a imagem local não for encontrada, usa o fallback
+    if (heroImage === LOCAL_HERO_IMAGE) {
+      setHeroImage(FALLBACK_IMAGE);
+    }
+  };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -65,6 +71,7 @@ export const Hero: React.FC = () => {
         <img
           className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-90 transition-all duration-500"
           src={heroImage}
+          onError={handleImageError}
           alt="Arborista trabalhando em altura com segurança"
         />
         <div className="absolute inset-0 bg-deep-forest mix-blend-multiply opacity-40 pointer-events-none"></div>
