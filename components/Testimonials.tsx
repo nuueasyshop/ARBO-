@@ -16,7 +16,7 @@ const testimonialsData: TestimonialProps[] = [
     name: "Roberto Mendes",
     role: "Síndico Profissional, Cond. Jardins",
     content: "Como síndico, minha prioridade é a prevenção de riscos. A Arbo foi a única empresa que apresentou toda a documentação de segurança e EPIs antes mesmo de eu pedir. A equipe trabalhou uniformizada e isolou a área perfeitamente.",
-    image: "/img/avatar-1.jpg",
+    image: "/avatar-1.jpg",
     fallback: "https://randomuser.me/api/portraits/men/32.jpg"
   },
   {
@@ -24,7 +24,7 @@ const testimonialsData: TestimonialProps[] = [
     name: "Clara Bittencourt",
     role: "Proprietária Residencial",
     content: "Tinha um pinheiro enorme inclinado perigosamente sobre o telhado da garagem. Eu estava apavorada que caísse na próxima chuva. Eles vieram com equipamentos profissionais e removeram tudo 'fatiado', sem deixar cair um galho sequer nas telhas. Um alívio total.",
-    image: "/img/avatar-2.jpg",
+    image: "/avatar-2.jpg",
     fallback: "https://randomuser.me/api/portraits/women/44.jpg"
   },
   {
@@ -32,7 +32,7 @@ const testimonialsData: TestimonialProps[] = [
     name: "Eng. Marcos Viana",
     role: "Gerente de Obras",
     content: "Precisávamos limpar um terreno para fundação com urgência. A equipe da Arbo não só removeu as árvores como fez a destoca completa das raízes em tempo recorde. O terreno ficou limpo e nivelado, pronto para minhas máquinas entrarem.",
-    image: "/img/avatar-3.jpg",
+    image: "/avatar-3.jpg",
     fallback: "https://randomuser.me/api/portraits/men/86.jpg"
   }
 ];

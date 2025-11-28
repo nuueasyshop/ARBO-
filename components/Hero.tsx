@@ -3,9 +3,9 @@ import { Button } from './Button';
 import { Icons } from './Icons';
 
 // --- CONFIGURAÇÃO DE IMAGEM ---
-// O site buscará automaticamente a imagem "hero-bg.jpg" na pasta "public/img".
+// O site buscará automaticamente a imagem "hero-bg.jpg" na pasta "public".
 // Se ela não existir, usará a imagem de fallback da internet.
-const LOCAL_HERO_IMAGE = "/img/hero-bg.jpg";
+const LOCAL_HERO_IMAGE = "/hero-bg.jpg";
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?q=80&w=1600&auto=format&fit=crop"; 
 
 export const Hero: React.FC = () => {

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Icons } from './Icons';
 
 // --- CONFIGURAÇÃO DA GALERIA ---
-// O site buscará: /img/gallery-1.jpg, /img/gallery-2.jpg, etc.
+// O site buscará: /gallery-1.jpg, /gallery-2.jpg, etc na pasta public.
 const INITIAL_IMAGES = [
-  { src: "/img/gallery-1.jpg", fallback: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&q=80" }, // Destaque
-  { src: "/img/gallery-2.jpg", fallback: "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?w=600&q=80" },
-  { src: "/img/gallery-3.jpg", fallback: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=600&q=80" },
-  { src: "/img/gallery-4.jpg", fallback: "https://images.unsplash.com/photo-1605117882932-f9e32b03ef3c?w=600&q=80" }
+  { src: "/gallery-1.jpg", fallback: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&q=80" }, // Destaque
+  { src: "/gallery-2.jpg", fallback: "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?w=600&q=80" },
+  { src: "/gallery-3.jpg", fallback: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=600&q=80" },
+  { src: "/gallery-4.jpg", fallback: "https://images.unsplash.com/photo-1605117882932-f9e32b03ef3c?w=600&q=80" }
 ];
 
 export const ProjectGallery: React.FC = () => {
@@ -44,7 +44,7 @@ export const ProjectGallery: React.FC = () => {
           </div>
           <p className="text-gray-400 max-w-md text-sm md:text-right">
             Veja a complexidade e a limpeza das nossas operações recentes.
-            <br/><span className="text-xs opacity-50">(Fotos carregadas de /public/img/gallery-*.jpg)</span>
+            <br/><span className="text-xs opacity-50">(Fotos devem estar em /public/gallery-*.jpg)</span>
           </p>
         </div>
 
