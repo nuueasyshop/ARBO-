@@ -1,13 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const analyzeJobRequest = async (details: string): Promise<string> => {
-  // Use import.meta.env for Vite environments (Vercel)
-  // The system prompt usually mandates process.env, but in a pure Vite frontend build, 
-  // process.env is not available at runtime. import.meta.env is the standard.
-  const apiKey = import.meta.env.VITE_API_KEY;
+  // Uso seguro de import.meta.env com fallback para evitar quebras
+  const apiKey = import.meta?.env?.VITE_API_KEY || '';
 
   if (!apiKey) {
-    return "Modo Demo: Chave de API não configurada (VITE_API_KEY). Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
+    console.warn("API Key não encontrada. Modo demonstração ativo.");
+    return "Modo Demo: Chave de API não configurada. Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
   }
 
   try {

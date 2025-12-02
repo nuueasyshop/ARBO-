@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PainPoints } from './components/PainPoints';
@@ -21,13 +21,12 @@ function App() {
 
   const navigateTo = (page: PageState) => {
     setCurrentPage(page);
-    if (page !== 'home') {
-      window.scrollTo(0, 0);
-    }
+    window.scrollTo(0, 0);
   };
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Header sempre visível */}
       <Header onNavigate={navigateTo} />
       
       <main>

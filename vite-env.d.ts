@@ -1,9 +1,7 @@
-// Cannot find type definition file for 'vite/client', so we define the types manually.
-// /// <reference types="vite/client" />
-
+// Reference to vite/client removed to resolve "Cannot find type definition" error
 interface ImportMetaEnv {
   readonly VITE_API_KEY: string;
-  [key: string]: string | boolean | undefined;
+  readonly VITE_GOOGLE_ADS_ID: string;
 }
 
 interface ImportMeta {

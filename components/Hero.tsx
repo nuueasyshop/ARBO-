@@ -18,14 +18,6 @@ export const Hero: React.FC = () => {
     }
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setHeroImage(imageUrl);
-    }
-  };
-
   return (
     <section className="relative bg-gray-100 overflow-hidden group">
       <div className="max-w-7xl mx-auto">
@@ -69,31 +61,12 @@ export const Hero: React.FC = () => {
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-charcoal relative">
         <img
-          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-90 transition-all duration-500"
+          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full transition-all duration-500"
           src={heroImage}
           onError={handleImageError}
           alt="Arborista trabalhando em altura com segurança"
         />
-        <div className="absolute inset-0 bg-deep-forest mix-blend-multiply opacity-40 pointer-events-none"></div>
-
-        {/* Botão de Upload de Imagem (Apenas para visualização/teste local) */}
-        <div className="absolute bottom-4 right-4 z-20 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
-            <input 
-                type="file" 
-                id="hero-image-upload" 
-                accept="image/*" 
-                className="hidden" 
-                onChange={handleImageUpload}
-            />
-            <button 
-                onClick={() => document.getElementById('hero-image-upload')?.click()}
-                className="bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg backdrop-blur-sm transition-all flex items-center gap-2 text-xs font-bold uppercase"
-                title="Alterar imagem (Preview)"
-            >
-                <Icons.Camera size={16} />
-                <span className="hidden md:inline">Testar Imagem</span>
-            </button>
-        </div>
+        {/* Filtro removido para cores originais */}
       </div>
     </section>
   );

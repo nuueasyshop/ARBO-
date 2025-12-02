@@ -21,9 +21,18 @@ export const ContactForm: React.FC = () => {
   };
 
   const handleWhatsAppSubmit = () => {
-    // Construct WhatsApp message
-    const text = `*Olá, Arbo Cut-Safe!*%0A%0A*Nome:* ${name}%0A*Solicitação:* ${jobDescription}%0A%0A*Pré-análise IA:* ${aiAnalysis || 'Não realizada'}`;
-    window.open(`https://wa.me/5537988426191?text=${text}`, '_blank');
+    // Validação simples
+    if (!name || !jobDescription) {
+      alert("Por favor, preencha seu nome e a descrição do serviço antes de continuar.");
+      return;
+    }
+
+    // Construção da mensagem segura com encodeURIComponent
+    // Isso garante que acentos, espaços e quebras de linha funcionem em qualquer celular
+    const message = `*Olá, Arbo Cut-Safe!*\n\n*Nome:* ${name}\n*Solicitação:* ${jobDescription}\n\n*Pré-análise IA:* ${aiAnalysis || 'Não realizada'}`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/5537988426191?text=${encodedMessage}`, '_blank');
   };
 
   return (
