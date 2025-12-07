@@ -13,7 +13,6 @@ import { Footer } from './components/Footer';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsOfUse } from './components/TermsOfUse';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
-import { GoogleAds } from './components/GoogleAds';
 
 type PageState = 'home' | 'privacy' | 'terms';
 
@@ -27,9 +26,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Componente que injeta a Tag do Google Ads se a variável de ambiente estiver definida */}
-      <GoogleAds />
-      
       {/* Header sempre visível */}
       <Header onNavigate={navigateTo} />
       
