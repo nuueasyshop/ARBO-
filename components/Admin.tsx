@@ -9,7 +9,8 @@ interface AdminProps {
 export const Admin: React.FC<AdminProps> = ({ onBack }) => {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const adsId = import.meta.env.VITE_GOOGLE_ADS_ID;
+  // Acesso seguro ao env
+  const adsId = import.meta?.env?.VITE_GOOGLE_ADS_ID;
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

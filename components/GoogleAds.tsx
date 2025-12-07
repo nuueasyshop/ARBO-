@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 
 export const GoogleAds: React.FC = () => {
-  const adsId = import.meta.env.VITE_GOOGLE_ADS_ID;
+  // Acesso seguro ao env para evitar crash se import.meta.env não estiver definido
+  const adsId = import.meta?.env?.VITE_GOOGLE_ADS_ID;
 
   useEffect(() => {
     if (!adsId) return;
@@ -22,7 +23,7 @@ export const GoogleAds: React.FC = () => {
     document.head.appendChild(inlineScript);
 
     return () => {
-      // Limpeza opcional (geralmente tags do google persistem)
+      // Limpeza opcional
     };
   }, [adsId]);
 
