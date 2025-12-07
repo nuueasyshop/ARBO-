@@ -1,16 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const analyzeJobRequest = async (details: string): Promise<string> => {
-  // Uso seguro de import.meta.env com fallback para evitar quebras
-  const apiKey = import.meta?.env?.VITE_API_KEY || '';
-
-  if (!apiKey) {
-    console.warn("API Key não encontrada. Modo demonstração ativo.");
-    return "Modo Demo: Chave de API não configurada. Normalmente, nossa IA analisaria sua solicitação para estimar a urgência e equipamentos. Por favor, envie o formulário para entrarmos em contato.";
-  }
-
   try {
-    const ai = new GoogleGenAI({ apiKey: apiKey });
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const systemPrompt = `Você é um consultor arborista especialista da 'Arbo Cut-Safe'. 
     Analise a descrição do trabalho do usuário. 

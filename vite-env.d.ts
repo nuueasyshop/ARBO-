@@ -1,4 +1,3 @@
-// Reference to vite/client removed to resolve "Cannot find type definition" error
 interface ImportMetaEnv {
   readonly VITE_API_KEY: string;
   readonly VITE_GOOGLE_ADS_ID: string;
@@ -6,4 +5,16 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;
+}
+
+declare var process: {
+  env: {
+    API_KEY: string;
+    [key: string]: string | undefined;
+  }
+};
+
+interface Window {
+  dataLayer: any[];
+  gtag: (...args: any[]) => void;
 }
